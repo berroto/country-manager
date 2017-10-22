@@ -59,10 +59,7 @@ I used the spring security with the basic authentication.
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [Groovy](http://groovy-lang.org/) - Programming Language 
 * [Thymeleaf](http://www.thymeleaf.org/) - Template Engine
-
-## Versioning
-
-I used [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/) as a versioning model
+* [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/ - versioning model
 
 ## Authors
 
