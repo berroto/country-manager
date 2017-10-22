@@ -27,8 +27,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   
       http.csrf().disable()
         .authorizeRequests()
-        .antMatchers("/countries/**").hasRole("ADMIN")
-        .antMatchers("/api/countries/**").hasRole("USER")
+        .antMatchers("/countries/**").hasAnyRole("ADMIN", "USER")
+        .antMatchers("/api/countries/**").hasRole("ADMIN")
         .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint())
         .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//We don't need sessions to be created.
     }
