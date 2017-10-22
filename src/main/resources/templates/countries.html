@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous"></link>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous"></link>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Country</th>
+                <th>Currencies</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="row: ${countries.content}">
+                <td  th:text="${row.id}"></td>
+                <td  th:text="${row.name}"></td>  
+                <td><span th:each="curr: ${row.currencies}" th:text="${curr.name + ';'}"></span></td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <div class="table-pagination">
+        <ul class="pagination">
+            <li th:class="${countries.number eq 0} ? 'disabled' : ''">
+                <a th:if="${not countries.first}" th:href="@{${'/countries'}(page=${countries.number-1},size=${countries.size})}">Previous</a>
+                <a th:if="${countries.first}" href="javascript:void(0);">Previous</a>
+            </li>
+
+            <li th:each="pageNo : ${#numbers.sequence(0, countries.totalPages - 1)}" th:class="${countries.number eq pageNo}? 'active' : ''">
+                <a th:if="${countries.number  eq pageNo}" href="javascript:void(0);">
+                    <span th:text="${pageNo + 1}"></span>
+                </a>
+                <a th:if="${not (countries.number  eq pageNo)}" th:href="@{${'/countries'}(page=${pageNo},size=${countries.size})}">
+                    <span th:text="${pageNo + 1}"></span>
+                </a>
+
+            </li>
+            <li th:class="${countries.number + 1 ge countries.totalPages} ? 'disabled' : ''">
+                <a th:if="${not countries.last}" th:href="@{${'/countries'}(page=${countries.number+1},size=${countries.size})}">Next</a>
+                <a th:if="${countries.last}" href="javascript:void(0);">Next</a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
