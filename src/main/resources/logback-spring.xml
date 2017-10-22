@@ -1,0 +1,12 @@
+<configuration debug="true" scan="true" scanPeriod="10 minutes"> 
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%date %level [%thread] %logger %msg%n</Pattern>
+        </encoder>
+    </appender>
+    <logger name="it.personal.countries" level="debug"/>
+    <logger name="org.hibernate" level="warn"/>    
+    <root level="warn">
+        <appender-ref ref="CONSOLE" />        
+    </root>
+</configuration>

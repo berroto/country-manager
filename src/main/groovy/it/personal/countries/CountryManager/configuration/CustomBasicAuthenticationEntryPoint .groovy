@@ -26,7 +26,7 @@ public class CustomBasicAuthenticationEntryPoint extends BasicAuthenticationEntr
      
     @Override
     public void afterPropertiesSet() throws Exception {
-        setRealmName("COUNTRY_MANAGER");
+        setRealmName("SAMPLEROUTING");
         super.afterPropertiesSet();
     }
 }

@@ -14,7 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private static String REALM="COUNTRY_MANAGER";
+    private static String REALM="SAMPLEROUTING";
      
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
@@ -28,6 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
       http.csrf().disable()
         .authorizeRequests()
         .antMatchers("/countries/**").hasRole("ADMIN")
+        .antMatchers("/api/countries/**").hasRole("USER")
         .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint())
         .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//We don't need sessions to be created.
     }
